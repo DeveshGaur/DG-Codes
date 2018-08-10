@@ -1,0 +1,49 @@
+create table dgstar
+(
+SID int,
+FN varchar(10),
+LN varchar(10),
+age int,
+DOB date
+);
+
+
+
+
+insert into dgstar values('007','devesh','gaur','18','04-Apr-2000');
+insert into dgstar values('010','Nikhil','Tamatta','22','21-Apr-1995');
+insert into dgstar values('011','Ramandeep','kaur','21','03-Jan-1996');
+insert into dgstar values('013','ginni','gaur','06','19-july-2012');
+insert into dgstar values('012','parul','banga','20','10-aug-1997');
+
+
+ALTER TABLE dgstar
+ADD height int;
+
+ALTER TABLE dgstar
+DROP column address;
+
+ALTER TABLE dgstar
+MODIFY FN varchar(20);
+
+
+UPDATE dgstar
+set HEIGHT=20
+where SID=10
+
+
+UPDATE dgstar
+set HEIGHT=25
+where SID=10 OR SID=13
+
+
+DELETE from dgstar
+where SID=13;
+(we can delete multiple by using OR)
+
+RENAME dgstar to dgstar69;
+
+
+
+
+DROP TABLE dgstar69;
