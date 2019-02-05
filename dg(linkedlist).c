@@ -5,15 +5,15 @@ struct node
 {
     int data;
     struct node *next;
-}*p=Null;
+}*p=NULL;
 void Addatbeg(int num)
 {
     struct node *temp;
     temp=(struct node *)malloc(sizeof(struct node));
     temp->data=num;
-    if(p==null)
+    if(p==NULL)
     {
-        temp->next=null;
+        temp->next=NULL;
         p=temp;
     }
     else
@@ -28,18 +28,18 @@ void Addatend(int num)
     temp=(struct node *)malloc(sizeof(struct node));
     temp->data=num;
     r=p;
-    if(p==null)
+    if(p==NULL)
     {
-        temp->next=null;
+        temp->next=NULL;
         p=temp;
     }
     else
     {
-        while(r->next!=null)
+        while(r->next!=NULL)
         {
             r=r->next;
         }
-        temp->next=null;
+        temp->next=NULL;
         r->next=temp;
     }
 }
@@ -47,7 +47,7 @@ struct node * search(int item)
 {
     struct node *r;
     r=p;
-    while(r!=null)
+    while(r!=NULL)
     {
         if(r->data==item)
         {
@@ -55,7 +55,7 @@ struct node * search(int item)
         }
         r=r->next;
     }
-    return Null;
+    return NULL;
 };
 void Addafter(int num,int num1)
 {
@@ -63,14 +63,14 @@ void Addafter(int num,int num1)
     temp=(struct node *)malloc(sizeof(struct node));
     temp->data=num;
     loc=search(num1);
-    if(loc==null)
+    if(loc==NULL)
     {
         printf("\nInsertion is not possible.");
         return;
     }
-    else if(loc->next==null)
+    else if(loc->next==NULL)
     {
-        temp->next=null;
+        temp->next=NULL;
         loc->next=temp;
     }
     else
@@ -80,12 +80,39 @@ void Addafter(int num,int num1)
     }
 
 }
+void Delbeg()
+{
+    struct node *r;
+    r=p;
+    if(r==NULL)
+    {
+        printf("\nOperation cannot be performed as the list is empty");
+        return;
+    }
+    else
+    {
+        p=r->next;
+        free(r);
+        return;
+    }
+}
+void Display()
+{
+    struct  node *r;
+    r=p;
+    while(r!=NULL)
+    {
+        printf("\n%d",r->data);
+        r=r->next;
+    }
+}
+
 void main()
 {
     int choice,num,num1;
     while(1)
     {
-        printf("Menu:-");
+        printf("\nMenu:-");
         printf("\n1.Insertion at begining");
         printf("\n2.Insertion at End");
         printf("\n3.Insertion after a node");
@@ -93,24 +120,34 @@ void main()
         printf("\n5.Deletion at End");
         printf("\n6.Deletion after a node");
         printf("\n7.Display");
-        printf("\nEnter a Choice");
+        printf("\nEnter a Choice:");
         scanf("%d",&choice);
         switch(choice)
         {
             case 1:printf("\nEnter number you want to insert at begining:");
                    scanf("%d",&num);
                    Addatbeg(num);
+                   printf("\nNumber is inserted at begining");
+                   break;
             case 2:printf("\nEnter number you want to insert at end:");
                    scanf("%d",&num);
                    Addatend(num);
+                   printf("\nNumber is inserted at end");
+                   break;
             case 3:printf("\nEnter number you want to insert:");
                    scanf("%d",&num);
                    printf("\nEnter number after that you want to insert:");
                    scanf("%d",&num1);
                    Addafter(num,num1);
+                   printf("\nNumber is inserted after the given number");
+                   break;
+            case 4:Delbeg();
+                   printf("\nNumber is deleted at begining");
+                   break;
             case 7:Display();
                    break;
         }
-
     }
+
+    return 0;
 }
