@@ -106,7 +106,54 @@ void Display()
         r=r->next;
     }
 }
+void Delend()
+{
+    struct node *r,*r1;
+    r=p;
+    r1=p->next;
+        if(p==NULL)
+        {
+            printf("\nLinked list is empty");
+        }
+        else
+        {
+            while(r1->next!=NULL)
+            {
+                r=r->next;
+                r1=r1->next;
+            }
+            r->next=NULL;
+            free(r1);
 
+        }
+}
+void Delafter(int num)
+{
+    struct node *loc,*r;
+    if(p==NULL)
+    {
+        printf("\nLinked list is empty.");
+    }
+    else
+    {
+        loc=search(num);
+        if(loc==NULL)
+        {
+            printf("\nNumber do not exist.");
+        }
+        else if(loc->next==NULL)
+        {
+            printf("\nNumber after do not exist.");
+        }
+        else
+        {
+           r=loc->next;
+           loc->next=r->next;
+           free(r);
+
+        }
+    }
+}
 void main()
 {
     int choice,num,num1;
@@ -143,6 +190,14 @@ void main()
                    break;
             case 4:Delbeg();
                    printf("\nNumber is deleted at begining");
+                   break;
+            case 5:Delend();
+                   printf("\nNumber is deleted at end");
+                   break;
+            case 6:printf("\nEnter the number after which you want to delete:");
+                   scanf("%d",&num);
+                   Delafter(num);
+                   printf("\nNumber is deleted after");
                    break;
             case 7:Display();
                    break;
