@@ -100,6 +100,10 @@ void Display()
 {
     struct  node *r;
     r=p;
+    if(p==NULL)
+    {
+        printf("\nLinked List is empty.");
+    }
     while(r!=NULL)
     {
         printf("\n%d",r->data);
@@ -117,14 +121,20 @@ void Delend()
         }
         else
         {
-            while(r1->next!=NULL)
-            {
+             if(r->next==NULL)
+             {
+               p=NULL;
+             }
+             else
+             {
+             while(r1->next!=NULL)
+             {
                 r=r->next;
                 r1=r1->next;
-            }
-            r->next=NULL;
-            free(r1);
-
+             }
+             r->next=NULL;
+             free(r1);
+             }
         }
 }
 void Delafter(int num)
